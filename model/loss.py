@@ -9,9 +9,9 @@ def L1_batch(num_pixels, target_images, train_images, target_light, train_light)
     # assuming length of each list = BATCH_SIZE
     assert(target_images.size() == train_images.size())
 
-    assert(target_lighting.size() == train_lighting.size())
+    assert(target_light.size() == train_light.size())
 
-    assert(target_images.size() == target_lighting.size())
+    assert(target_images.size() == target_light.size())
 
     # calculate sum loss then average
 
