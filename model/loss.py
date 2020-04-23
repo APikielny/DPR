@@ -5,7 +5,7 @@ import numpy as np
 BATCH_SIZE = 100
 
 #return average L1 loss across a batch
-def L1_batch(num_pixels, target_images, train_images, target_light, train_light):
+def L1(num_pixels, target_images, train_images, target_light, train_light):
     # assuming length of each list = BATCH_SIZE
     assert(target_images.size() == train_images.size())
 
