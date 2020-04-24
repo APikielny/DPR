@@ -24,19 +24,22 @@ class ImagePair:
 
 # 27,000 length array of ImagePair
 def load_data():
-    # img_s = 'data/imgHQ00000/imgHQ00000_00.jpg'
-    # img_t = 'data/imgHQ00000/imgHQ00000_01.jpg'
+    img_s = 'data/imgHQ00000/imgHQ00000_00.jpg'
+    img_t = 'data/imgHQ00000/imgHQ00000_01.jpg'
     # l_s = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     # l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     #
-    # img_s = Image.open(img_s)
-    # img_s = transforms.ToTensor()(img_s).unsqueeze(0)
-    # img_t = Image.open(img_t).convert('LA')
-    # img_t = transforms.ToTensor()(img_t).unsqueeze(0)
-    # print(img_s.shape)
-    # print(img_t.shape)
-    img_s = torch.zeros((3, 1, 128, 128))
-    img_t = torch.zeros((3, 1, 128, 128))
+    img_s = Image.open(img_s)
+    img_s = transforms.ToTensor()(img_s).unsqueeze(0)
+    img_t = Image.open(img_t).convert('LA')
+    img_t = transforms.ToTensor()(img_t).unsqueeze(0)
+
+    print(img_s.shape)
+    print(img_t.shape)
+
+    # img_s = torch.zeros((3, 1, 128, 128))
+    # img_t = torch.zeros((3, 1, 128, 128))
+
     l_s = torch.zeros((3, 27, 1, 1))
     l_t = torch.zeros((3, 27, 1, 1))
 
