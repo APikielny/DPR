@@ -61,8 +61,10 @@ def train(model, optimizer, data):
             N = I_s.shape[0] * I_s.shape[0]
             loss = L1(N, I_t, I_tp, L_s, L_sp)
             total_loss += loss
+        
+        total_loss = torch.sum(total_loss)
 
-        total_loss /= BATCH_SIZE
+        # total_loss /= BATCH_SIZE
         print(total_loss)
         optimizer.zero_grad()
         total_loss.backward()
