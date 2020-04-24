@@ -34,8 +34,8 @@ def load_data():
     # img_t = ImageOps.grayscale(Image.open(img_t).convert('LA'))
     # img_t = transforms.ToTensor()(img_t).unsqueeze(0)
 
-    img_s = torch.zeros((1, 3, 128, 128))
-    img_t = torch.zeros((1, 3, 128, 128))
+    img_s = torch.zeros((3, 128, 128, 1))
+    img_t = torch.zeros((3, 128, 128, 1))
     l_s = torch.zeros((128, 27, 1, 1))
     l_t = torch.zeros((128, 27, 1, 1))
 
