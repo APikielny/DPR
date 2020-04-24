@@ -35,8 +35,8 @@ def load_data():
     # img_t = transforms.ToTensor()(img_t).unsqueeze(0)
     # print(img_s.shape)
     # print(img_t.shape)
-    img_s = torch.zeros((3, 128, 128, 1))
-    img_t = torch.zeros((3, 128, 128, 1))
+    img_s = torch.zeros((3, 1, 128, 128))
+    img_t = torch.zeros((3, 1, 128, 128))
     l_s = torch.zeros((128, 27, 1, 1))
     l_t = torch.zeros((128, 27, 1, 1))
 
