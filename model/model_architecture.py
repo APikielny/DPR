@@ -57,7 +57,8 @@ def train(model, optimizer, data):
             L_t = data[j].L_t
 
             I_tp, L_sp = model.forward(I_s, L_t, 4)
-            N = I_s.size * I_s.size
+
+            N = I_s.shape[0] * I_s.shape[0]
             loss = L1(N, I_t, I_tp, L_s, L_sp)
             total_loss += loss
 
