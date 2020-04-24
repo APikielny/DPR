@@ -8,9 +8,10 @@ import time
 
 from .defineHourglass_512_gray_skip import HourglassNet, lightingNet
 from .loss import L1
+from skimage.io import imread
 
 EPOCHS = 1
-BATCH_SIZE = 100
+BATCH_SIZE = 1
 
 class ImagePair:
     def __init__(self, I_s, I_t, L_s, L_t):
@@ -21,7 +22,15 @@ class ImagePair:
 
 # 27,000 length array of ImagePair
 def load_data():
-    return None
+    img_s = 'data/dpr_0/HQ00000/imgHQ00000_00.jpg'
+    img_t = 'data/dpr_0/HQ00000/imgHQ00000_01.jpg'
+    l_s = 'data/dpr_0/HQ00000/imgHQ00000_light_00.txt'
+    l_t = 'data/dpr_0/HQ00000/imgHQ00000_light_01.txt'
+
+    img_s = imread(img_s)
+    img_t = imread(img_t)
+    return ImagePair(img_s, img_t, None, None)
+
 
 
 def train(model, optimizer, data):
@@ -54,6 +63,8 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9) #not sur
 
 for i in range(EPOCHS):
     data = load_data()
+    print(data.I_t)
+    print(data.I_s)
     train(model, optimizer, data)
 
 #Save model
