@@ -7,7 +7,7 @@ def read(path):
     while(len(g) > 0):
         trimmed = g.splitlines()[0]
         # print(g)
-        x.append(trimmed)
+        x.append(float(trimmed))
         g = f.readline()
     # resize maybe
     return torch.tensor(x)
