@@ -62,7 +62,7 @@ def train(model, optimizer, data):
             loss = L1(N, I_t, I_tp, L_s, L_sp)
             total_loss += loss
         
-        total_loss = torch.mean(torch.sum(total_loss))
+        total_loss = torch.mean(total_loss)
 
         #total_loss /= BATCH_SIZE
         print(total_loss)
