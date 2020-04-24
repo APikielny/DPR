@@ -57,7 +57,7 @@ def train(model, optimizer, data):
             L_t = data[j].L_t
 
             I_tp, L_sp = model.forward(I_s, L_t, 4)
-            N = I_s.size ** 2
+            N = torch.pow(I_s.size, 2)
             loss = L1(N, I_t, I_tp, L_s, L_sp)
             total_loss += loss
 
