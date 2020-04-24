@@ -9,8 +9,8 @@ def read(path):
         # print(g)
         x.append(trimmed)
         g = f.readline()
-
-    return torch.tensor(x).squeeze((3,3))
+    # resize maybe
+    return torch.tensor(x)
 
 
 
