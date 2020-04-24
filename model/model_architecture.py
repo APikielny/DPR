@@ -12,7 +12,7 @@ from PIL import Image, ImageOps
 from light import read
 from torchvision import transforms
 
-EPOCHS = 2000
+EPOCHS = 2
 BATCH_SIZE = 1
 
 class ImagePair:
