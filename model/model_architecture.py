@@ -9,6 +9,7 @@ import time
 from defineHourglass_512_gray_skip import HourglassNet, lightingNet
 from loss import L1
 from PIL import Image
+from light import read
 
 EPOCHS = 1
 BATCH_SIZE = 1
@@ -24,12 +25,12 @@ class ImagePair:
 def load_data():
     img_s = 'data/dpr_0/imgHQ00000/imgHQ00000_00.jpg'
     img_t = 'data/dpr_0/imgHQ00000/imgHQ00000_01.jpg'
-    l_s = 'data/dpr_0/imgHQ00000/imgHQ00000_light_00.txt'
-    l_t = 'data/dpr_0/imgHQ00000/imgHQ00000_light_01.txt'
+    l_s = read('data/dpr_0/imgHQ00000/imgHQ00000_light_00.txt')
+    l_t = read('data/dpr_0/imgHQ00000/imgHQ00000_light_01.txt')
 
     img_s = Image.open(img_s)
     img_t = Image.open(img_t)
-    return [ImagePair(img_s, img_t, None, None)]
+    return [ImagePair(img_s, img_t, l_s, l_t)]
 
 
 
@@ -51,7 +52,7 @@ def train(model, optimizer, data):
             total_loss += loss
 
         total_loss /= BATCH_SIZE
-
+        print(total_loss)
         optimizer.zero_grad()
         total_loss.backward()
         optimizer.step()
@@ -63,8 +64,6 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9) #not sur
 
 for i in range(EPOCHS):
     data = load_data()
-    print(data.I_t)
-    print(data.I_s)
     train(model, optimizer, data)
 
 #Save model
