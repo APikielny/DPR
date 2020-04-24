@@ -1,29 +1,14 @@
-import torch.nn as nn
+from skimage import filters
 import torch
-import numpy as np
 
-BATCH_SIZE = 100
+def L1_single(N, I_t, I_tp, L_s, L_sp):
 
-#return average L1 loss across a batch
-def L1(num_pixels, target_images, train_images, target_light, train_light):
-    # assuming length of each list = BATCH_SIZE
-    assert(target_images.size() == train_images.size())
+    # Fix norms
+    img_norm = torch.norm(I_t - I_tp)
+    grad_norm = torch.norm(filters.gaussian(I_t) - filters.gaussian(I_tp))
+    image_loss = img_norm + grad_norm
 
-    assert(target_light.size() == train_light.size())
+    light_loss = (L_s - L_sp) ** 2
 
-    assert(target_images.size() == target_light.size())
-
-    # calculate sum loss then average
-
-    subtracted = train_images - target_images
-
-    #TODO add gradient here but I'm not sure how
-    term1 = (1/num_pixels) * torch.norm(subtracted) #TODO: Change to L1 norm
-
-    subtracted2 = train_light - target_light
-
-    term2 = subtracted2 ** 2
-
-    sum = term1.add(term2)
-
-    return torch.mean(sum)
+    loss = (1/N) * image_loss + light_loss
+    return loss
