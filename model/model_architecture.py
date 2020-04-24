@@ -21,13 +21,13 @@ def train(model, optimizer):
         #3. forward pass
         #hourglassNet forward pass requires: (self, x, target_light, skip_count)
         #for skip count i think it depends on the epoch? ¯\_(ツ)_/¯
-        output = model.forward(data, more_data, skip_count)
+        out_img, out_light = model.forward(data, more_data, skip_count)
 
         #4. loss + ~optimize~
         #calculate num pixels for loss:
         N = data[0].size ** 2
 
-        loss = L1(N, data, data, data, data)
+        loss = L1(N, out_img, out_light, ...)
         loss.backward()
         optimizer.step()
 

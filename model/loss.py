@@ -18,7 +18,7 @@ def L1(num_pixels, target_images, train_images, target_light, train_light):
     subtracted = train_images - target_images
 
     #TODO add gradient here but I'm not sure how
-    term1 = (1/num_pixels) * torch.norm(subtracted)
+    term1 = (1/num_pixels) * torch.norm(subtracted) #TODO: Change to L1 norm
 
     subtracted2 = train_light - target_light
 
