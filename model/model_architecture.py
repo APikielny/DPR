@@ -10,6 +10,7 @@ from defineHourglass_512_gray_skip import HourglassNet, lightingNet
 from loss import L1
 from PIL import Image
 from light import read
+from torchvision import transforms
 
 EPOCHS = 1
 BATCH_SIZE = 1
@@ -29,7 +30,9 @@ def load_data():
     l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
 
     img_s = Image.open(img_s)
+    img_s = transforms.toTensor()(img_s)
     img_t = Image.open(img_t)
+    img_t = transforms.toTensor()(img_t)
     return [ImagePair(img_s, img_t, l_s, l_t)]
 
 
