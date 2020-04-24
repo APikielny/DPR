@@ -1,7 +1,7 @@
 from skimage import filters
 import torch
 
-def L1_single(N, I_t, I_tp, L_s, L_sp):
+def L1(N, I_t, I_tp, L_s, L_sp):
 
     # Fix norms
     img_norm = torch.norm(I_t - I_tp)
