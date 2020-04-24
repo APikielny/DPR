@@ -10,7 +10,7 @@ def read(path):
         x.append(float(trimmed))
         g = f.readline()
     # resize maybe
-    return torch.tensor(x).unsqueeze(0)
+    return torch.tensor(x).unsqueeze(0).unsqueeze(0).unsqueeze(0)
 
 
 
