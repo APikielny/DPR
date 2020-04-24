@@ -8,7 +8,7 @@ import time
 
 from defineHourglass_512_gray_skip import HourglassNet, lightingNet
 from loss import L1
-from skimage.io import imread
+from PIL import Image
 
 EPOCHS = 1
 BATCH_SIZE = 1
@@ -27,19 +27,19 @@ def load_data():
     l_s = 'data/dpr_0/imgHQ00000/imgHQ00000_light_00.txt'
     l_t = 'data/dpr_0/imgHQ00000/imgHQ00000_light_01.txt'
 
-    img_s = imread(img_s)
-    img_t = imread(img_t)
-    return np.array([ImagePair(img_s, img_t, None, None)])
+    img_s = Image.open(img_s)
+    img_t = Image.open(img_t)
+    return [ImagePair(img_s, img_t, None, None)]
 
 
 
 def train(model, optimizer, data):
 
-    num_batches = data.size // BATCH_SIZE
+    num_batches = len(data) // BATCH_SIZE
 
     for i in range(num_batches):
         total_loss = 0
-        for j in range(i*BATCH_SIZE, min(i*BATCH_SIZE + BATCH_SIZE, data.size)):
+        for j in range(i*BATCH_SIZE, min(i*BATCH_SIZE + BATCH_SIZE, len(data))):
             I_s = data[j].I_s
             I_t = data[j].I_t
             L_s = data[j].L_s
