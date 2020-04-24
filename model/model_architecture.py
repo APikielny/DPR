@@ -30,9 +30,9 @@ def load_data():
     l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
 
     img_s = Image.open(img_s)
-    img_s = transforms.ToTensor()(img_s)
+    img_s = transforms.ToTensor()(img_s).unsqueeze(0)
     img_t = Image.open(img_t)
-    img_t = transforms.ToTensor()(img_t)
+    img_t = transforms.ToTensor()(img_t).unsqueeze(0)
     return [ImagePair(img_s, img_t, l_s, l_t)]
 
 
