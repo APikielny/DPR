@@ -29,9 +29,9 @@ def load_data():
     l_s = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
 
-    img_s = ImageOps.grayscale(Image.open(img_s))
+    img_s = Image.open(img_s)
     img_s = transforms.ToTensor()(img_s).unsqueeze(0)
-    img_t = ImageOps.grayscale(Image.open(img_t).convert('LA'))
+    img_t = Image.open(img_t).convert('LA')
     img_t = transforms.ToTensor()(img_t).unsqueeze(0)
     print(img_s.shape)
     print(img_t.shape)
@@ -68,7 +68,7 @@ def train(model, optimizer, data):
         optimizer.step()
 
 
-model = HourglassNet(gray=True)
+model = HourglassNet(gray=False)
 
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9) #not sure if we should be using Adam or another optimizer
 
