@@ -61,7 +61,7 @@ def train(model, optimizer, data):
         optimizer.step()
 
 
-model = HourglassNet()
+model = HourglassNet(gray=False)
 
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9) #not sure if we should be using Adam or another optimizer
 
