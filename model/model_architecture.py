@@ -24,8 +24,8 @@ class ImagePair:
 
 # 27,000 length array of ImagePair
 def load_data():
-    img_s = 'data/imgHQ00000/imgHQ00000_00.jpg'
-    img_t = 'data/imgHQ00000/imgHQ00000_01.jpg'
+    img_s = '../data/imgHQ00000/imgHQ00000_00.jpg'
+    img_t = '../data/imgHQ00000/imgHQ00000_01.jpg'
     # l_s = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     # l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     #
