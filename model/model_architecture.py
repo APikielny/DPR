@@ -8,7 +8,7 @@ import time
 
 from defineHourglass_512_gray_skip import HourglassNet, lightingNet
 from loss import L1
-from PIL import Image
+from PIL import Image, ImageOps
 from light import read
 from torchvision import transforms
 
@@ -29,9 +29,9 @@ def load_data():
     l_s = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
 
-    img_s = Image.open(img_s).convert('LA')
+    img_s = ImageOps.grayscale(Image.open(img_s))
     img_s = transforms.ToTensor()(img_s).unsqueeze(0)
-    img_t = Image.open(img_t).convert('LA')
+    img_t = ImageOps.grayscale(Image.open(img_t).convert('LA'))
     img_t = transforms.ToTensor()(img_t).unsqueeze(0)
     return [ImagePair(img_s, img_t, l_s, l_t)]
 
