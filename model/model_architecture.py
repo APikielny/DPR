@@ -31,8 +31,12 @@ def load_data():
     #
     img_s = Image.open(img_s)
     img_s = transforms.ToTensor()(img_s).unsqueeze(0)
-    img_t = Image.open(img_t).convert('LA')
+    img_t = Image.open(img_t)
     img_t = transforms.ToTensor()(img_t).unsqueeze(0)
+
+    #permuting dimensions:
+    img_s = img_s.permute(1,0,2,3)
+    img_t = img_t.permute(1,0,2,3)
 
     print(img_s.shape)
     print(img_t.shape)
