@@ -6,8 +6,8 @@ import sys
 import numpy as np
 import time
 
-from .defineHourglass_512_gray_skip import HourglassNet, lightingNet
-from .loss import L1
+from defineHourglass_512_gray_skip import HourglassNet, lightingNet
+from loss import L1
 from skimage.io import imread
 
 EPOCHS = 1
@@ -22,14 +22,14 @@ class ImagePair:
 
 # 27,000 length array of ImagePair
 def load_data():
-    img_s = 'data/dpr_0/HQ00000/imgHQ00000_00.jpg'
-    img_t = 'data/dpr_0/HQ00000/imgHQ00000_01.jpg'
-    l_s = 'data/dpr_0/HQ00000/imgHQ00000_light_00.txt'
-    l_t = 'data/dpr_0/HQ00000/imgHQ00000_light_01.txt'
+    img_s = 'data/dpr_0/imgHQ00000/imgHQ00000_00.jpg'
+    img_t = 'data/dpr_0/imgHQ00000/imgHQ00000_01.jpg'
+    l_s = 'data/dpr_0/imgHQ00000/imgHQ00000_light_00.txt'
+    l_t = 'data/dpr_0/imgHQ00000/imgHQ00000_light_01.txt'
 
     img_s = imread(img_s)
     img_t = imread(img_t)
-    return ImagePair(img_s, img_t, None, None)
+    return np.array([ImagePair(img_s, img_t, None, None)])
 
 
 
@@ -45,7 +45,7 @@ def train(model, optimizer, data):
             L_s = data[j].L_s
             L_t = data[j].L_t
 
-            I_tp, L_sp = model.forward(I_s, L_t, skip_count)
+            I_tp, L_sp = model.forward(I_s, L_t, 4)
             N = I_s.size ** 2
             loss = L1(N, I_t, I_tp, L_s, L_sp)
             total_loss += loss
