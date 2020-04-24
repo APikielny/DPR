@@ -37,8 +37,8 @@ def load_data():
     # print(img_t.shape)
     img_s = torch.zeros((3, 1, 128, 128))
     img_t = torch.zeros((3, 1, 128, 128))
-    l_s = torch.zeros((128, 27, 1, 1))
-    l_t = torch.zeros((128, 27, 1, 1))
+    l_s = torch.zeros((128, 27, 8, 8))
+    l_t = torch.zeros((128, 27, 8, 8))
 
     return [ImagePair(img_s, img_t, l_s, l_t)]
 
