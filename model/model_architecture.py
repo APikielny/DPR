@@ -29,7 +29,7 @@ def load_data():
     # l_s = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     # l_t = read('data/imgHQ00000/imgHQ00000_light_01.txt')
     #
-    img_s = ImageOps.grayscale(Image.open(img_s))
+    img_s = Image.open(img_s)
     img_s = transforms.ToTensor()(img_s).unsqueeze(0)
     # img_t = ImageOps.grayscale(Image.open(img_t).convert('LA'))
     # img_t = transforms.ToTensor()(img_t).unsqueeze(0)
