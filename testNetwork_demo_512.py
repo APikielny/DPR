@@ -51,12 +51,12 @@ if not os.path.exists(saveFolder):
 img = cv2.imread('data/obama.jpg')
 row, col, _ = img.shape
 img = cv2.resize(img, (512, 512))
-Lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+Lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB) #converts image to one color space LAB
 
-inputL = Lab[:,:,0]
-inputL = inputL.astype(np.float32)/255.0
+inputL = Lab[:,:,0] #taking only the L channel
+inputL = inputL.astype(np.float32)/255.0 #normalise
 inputL = inputL.transpose((0,1))
-inputL = inputL[None,None,...]
+inputL = inputL[None,None,...] #not sure what's happening here
 inputL = Variable(torch.from_numpy(inputL).cuda())
 
 for i in range(7):
